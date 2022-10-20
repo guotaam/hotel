@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<br><br>
+   <div class="row">
+		{% for item in chambres  %}
+			<div class="col-md-4">
+				<div class="card" style="width: 18rem;">"
+					<img src="{{ item.photo }}" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{ item.titre }}</h5>
+						<p class="card-text">{{ item.description|raw }}</p>
+						 <p class="card-text">{{ item.prixJournalier}}€</p> 
+						<a href="{{path('app_resa', {id: item.id})}} " class="btn btn-dark">Réserver</a>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+
+
+
+
+
+{% endblock %}

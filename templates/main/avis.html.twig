@@ -1,0 +1,20 @@
+
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+
+{{ form_start(form) }}
+
+
+        {{ form_row(form.prenom) }}
+		{{ form_row(form.nom) }}
+		{{ form_row(form.commentaire) }}
+		
+
+
+
+{{ form_end(form) }}
+        {% endblock  %}
