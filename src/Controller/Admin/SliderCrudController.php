@@ -23,9 +23,17 @@ class SliderCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('photo'),
             IntegerField::new('ordre'),
-            DateTimeField::new('createdAt')
+            DateTimeField::new('createdAt')->setFormat("d/M/Y à H:m:s")->hideOnForm()
         ];
     }
 
     
+public function createEntity(string $entityFqcn)
+{
+
+$membre =new $entityFqcn; 
+$membre->setCreatedAt(new \DateTime);
+return $membre;
+}
+
 }

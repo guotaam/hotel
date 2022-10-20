@@ -8,6 +8,7 @@ use App\Entity\Chambre;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\AvisRepository;
+use App\Repository\SliderRepository;
 use App\Repository\ChambreRepository;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,16 +20,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function index(ChambreRepository $repo): Response
+    public function index(SliderRepository $repo): Response
     {
-       // $chambres=$repo->findAll(); 
+        $sliders=$repo->findAll(); 
+     
         return $this->render('main/index.html.twig', [
-           
-         //  'chambres'=>$chambres 
+            'photos' => $sliders
         ]);
-      //  return $this->render('main/index.html.twig', [
-         //   'controller_name' => 'MainController',
-        //]);
+
+        
+        
+    
     }
 
     #[Route('/home', name: 'app_show')]
@@ -144,14 +146,16 @@ public function avis(AvisRepository $repo, Request $rq,EntityManagerInterface $m
         $manager->persist($avis);
         $manager->flush();
         $this->addFlash('success', 'Votre commentaire a bien été enregistrée !');
-        return $this->renderForm('main/avis.html.twig');
+        return $this->redirectToRoute('avis');
     
 
     
 }
+        $avis=$repo->findAll();
 
-return $this->renderForm('main/avis.html.twig',[
-    'form' => $form
+    return $this->renderForm('main/avis.html.twig',[
+    'form' => $form,
+    'avis'=>$avis
     
 ]);
 

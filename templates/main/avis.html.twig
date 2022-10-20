@@ -6,6 +6,7 @@
 
 <br><br>
 
+
 {{ form_start(form) }}
 
 
@@ -17,4 +18,22 @@
 
 
 {{ form_end(form) }}
-        {% endblock  %}
+
+
+<br><br>
+
+ {% for item in avis %}
+ <div class= "bg-light text-dark">
+<div class="container">
+<p>{{item.prenom}}</p>
+<p>{{item.nom}}</p>
+
+</div>
+<div class="container border-solid">
+<p>Votre commentaire:{{item.commentaire}}</p>
+<hr>
+</div>
+</div>
+        
+{% endfor %}
+{% endblock  %}

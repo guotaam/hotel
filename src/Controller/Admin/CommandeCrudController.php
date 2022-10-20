@@ -24,15 +24,15 @@ class CommandeCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            AssociationField::new('chambre'),
-            DateTimeField::new('date_arrivee'),
-            DateTimeField::new('date_depart'),
-            IntegerField::new('prix_total'),
+            AssociationField::new('chambre')->renderAsNativeWidget() ,
             TextField::new('prenom'),
+            DateTimeField::new('date_arrivee')->setFormat("d/M/Y à H:m:s")->hideOnForm(),
+          DateTimeField::new('date_depart')->setFormat("d/M/Y à H:m:s")->hideOnForm(),
+            IntegerField::new('prix_total'),
             TextField::new('nom'),
-            TelephoneField::new('telephone'),
+            TextField::new('telephone'),
             EmailField::new('email'),
-            DateTimeField::new('createdAt')
+            DateTimeField::new('createdAt')->setFormat("d/M/Y à H:m:s")->hideOnForm(),
 
         ];
 

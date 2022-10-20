@@ -14,9 +14,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class MembreCrudController extends AbstractCrudController
 {
+    private $hasher;
+
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
+
     public static function getEntityFqcn(): string
     {
         return Membre::class;
@@ -34,10 +42,10 @@ class MembreCrudController extends AbstractCrudController
         ChoiceField::new('Civilite')->setChoices([
             
             'M' => 'Homme',
-            'Mme' => 'Femme',
+            'Mme' => 'Femme'
            
         ]),
-        DateTimeField::new('createdAt')->setFormat("d/M/Y à H:m:s"),
+        DateTimeField::new('createdAt')->setFormat("d/M/Y à H:m:s")->hideOnForm(),
         TextField::new('password','Mot de passe')->setFormType(PasswordType::class)->onlyWhenCreating(),
         CollectionField::new('roles')->setTemplatePath('admin/field/roles.html.twig'),
 
