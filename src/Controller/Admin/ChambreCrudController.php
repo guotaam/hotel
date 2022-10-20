@@ -18,12 +18,12 @@ class ChambreCrudController extends AbstractCrudController
     }
 
     
-    public function configureFields(string $pageName): iterable
+   public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('titre'),
-            TextField::new('descriptio'),
+            TextField::new('description'),
             TextEditorField::new('descriptionlongue'),
             TextField::new('photo')->setMaxLength(10),
             IntegerField::new('prixjournalier'),
