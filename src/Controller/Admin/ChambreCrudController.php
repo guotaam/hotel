@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Chambre;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -19,10 +21,14 @@ class ChambreCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('descriptionLongue'),
+            IdField::new('id')->hideOnForm(),
+            TextField::new('titre'),
+            TextField::new('descriptio'),
+            TextEditorField::new('descriptionlongue'),
+            TextField::new('photo')->setMaxLength(10),
+            IntegerField::new('prixJournalier'),
+            DateTimeField::new('createdAt')->setFormat("d/M/Y à H:m:s"),
         ];
     }
-    
+
 }
