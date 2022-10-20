@@ -26,7 +26,7 @@ class ChambreCrudController extends AbstractCrudController
             TextField::new('descriptio'),
             TextEditorField::new('descriptionlongue'),
             TextField::new('photo')->setMaxLength(10),
-            IntegerField::new('prixJournalier'),
+            IntegerField::new('prixjournalier'),
             DateTimeField::new('createdAt')->setFormat("d/M/Y à H:m:s"),
         ];
     }
